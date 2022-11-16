@@ -1,4 +1,6 @@
 import datetime
+import os
+
 
 
 class Library:
@@ -28,15 +30,13 @@ class Library:
 
     @staticmethod
     def remove_book(isbn):
-        if isbn != "":
-            with open("Books.txt", "a") as f:
-                file = f.readlines()
-            with open("Books.txt", "b") as f:
-                for i in file:
-                    bookinfo = i.strip("\n").lower().split(' ')
-                    if isbn.lower() not in words:
-                        f.write(line)
-                        file.close()
+        with open("books.txt",  "r") as input:
+            with open("books.txt", "w") as output:
+            for line in input:
+                if line.strip("\n") != isbn:
+                    output.write(line)
+        os.replace('temp.txt', 'books.txt')
+                
             
             
             
