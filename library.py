@@ -34,7 +34,7 @@ class Library:
             with open("Books.txt", "b") as f:
                 for i in file:
                     bookinfo = i.strip("\n").lower().split(' ')
-                    if delete_value.lower() not in words:
+                    if isbn.lower() not in words:
                         f.write(line)
             
             
