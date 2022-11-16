@@ -93,15 +93,7 @@ def new_book(book_title, book_author, book_isbn, renter_name):
         wx.CallLater(3000, hide_obj, add_successful)
         return
     return adding
-
-def delete_book(isbn):
-    def removing(event):
-        if isbn.GetValue == "":
-            remove_successful.Show()
-            wx.CallLater(3000, hide_obj, remove_successful)
-            
-            
-            
+        
 
 
 add_panel = wx.Panel(add_page, wx.ID_ANY)
@@ -166,6 +158,24 @@ search_book = wx.Button(search_panel, wx.ID_ANY, 'Return to Menu', (10, 10))
 search_book.Bind(wx.EVT_BUTTON, onclick(search_page, main_page))
 
 # remove page
+def delete_book(isbn):
+    def removing(event):
+        if isbn.GetValue() != "":
+            with open("Books.txt", "a") as f:
+                file = f.readlines()
+            with open("Books.txt", "b") as f:
+                for i in file:
+                    bookinfo = i.strip("\n").lower().split(' ')
+                    if isbn.lower() not in words:
+                        f.write(line)
+                        file.close()
+                        remove_successful.Show()
+                        wx.CallLater(3000, hide_obj, remove_successful)
+         else:
+            remove_unsuccessful.Show()
+            wx.CallLater(3000, hide_obj, remove_unsuccessful)
+            
+            
 remove_panel = wx.Panel(remove_page, wx.ID_ANY)
 remove_book = wx.Button(remove_panel, wx.ID_ANY, 'Return to Menu', (10, 10))
 remove_book.Bind(wx.EVT_BUTTON, onclick(remove_page, main_page))
