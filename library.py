@@ -36,6 +36,7 @@ class Library:
                     bookinfo = i.strip("\n").lower().split(' ')
                     if isbn.lower() not in words:
                         f.write(line)
+                        file.close()
             
             
             
