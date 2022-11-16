@@ -21,19 +21,25 @@ class Library:
             file.close()
 
     @staticmethod
-    def search_book(key, query):
+    def search_book(title_key,author_key, isbn_key, query):
         # key = 1 (title), 2 (author) or 3 (ISBN)
         # query = string to search for in file
         # Returns book(s) in below format:
         # Title by Author. [If the book is being rented:]. Rented by Renter Name on Rented Date. Return by Return Date.
-        pass
+        if title_key, author_key or isb_key != "":
+            with open("books.txt",  "r") as inp:
+                for l_no, line in enumerate(inp):
+        # search string
+        if title_key, author_key or isb_key in line:
+            return line
+          
 
     @staticmethod
     def remove_book(isbn):
         with open("books.txt",  "r") as inp:
             with open("books.txt", "w") as output:
                 for line in inp:
-                    if isbn.GetValue() not in line.strip("\n"):
+                    if isbn not in line.strip("\n"):
                         output.write(line)
         os.replace('temp.txt', 'books.txt')
                 
