@@ -3,6 +3,7 @@ import wx
 import datetime
 from user import User
 from library import Library
+import os
 
 
 # function for switching pages
@@ -160,18 +161,19 @@ search_book.Bind(wx.EVT_BUTTON, onclick(search_page, main_page))
 # remove page
 def delete_book(isbn):
     def removing(event):
-        with open("books.txt",  "r") as input:
+        with open("books.txt",  "r") as inp:
             with open("books.txt", "w") as output:
-                for line in input:
+                for line in inp:
                     if isbn.GetValue() not in line.strip("\n"):
                         output.write(line)
                         removal_successful.Show()
                         wx.CallLater(3000, hide_obj, removal_successful)
-                     else:
+                    else:
                         removal_unsuccessful.Hide()
                         wx.CallLater(3000, hide_obj, removal_unsuccessful)
                         
         os.replace('temp.txt', 'books.txt')
+    return removing
             
             
 remove_panel = wx.Panel(remove_page, wx.ID_ANY)
