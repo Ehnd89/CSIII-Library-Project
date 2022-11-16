@@ -160,20 +160,18 @@ search_book.Bind(wx.EVT_BUTTON, onclick(search_page, main_page))
 # remove page
 def delete_book(isbn):
     def removing(event):
-        if isbn.GetValue() != "":
-            with open("Books.txt", "a") as f:
-                file = f.readlines()
-            with open("Books.txt", "b") as f:
-                for i in file:
-                    bookinfo = i.strip("\n").lower().split(' ')
-                    if isbn.lower() not in words:
-                        f.write(line)
-                        file.close()
-                        remove_successful.Show()
-                        wx.CallLater(3000, hide_obj, remove_successful)
-         else:
-            remove_unsuccessful.Show()
-            wx.CallLater(3000, hide_obj, remove_unsuccessful)
+        with open("books.txt",  "r") as input:
+            with open("books.txt", "w") as output:
+                for line in input:
+                    if isbn.GetValue() not in line.strip("\n"):
+                        output.write(line)
+                        removal_successful.Show()
+                        wx.CallLater(3000, hide_obj, removal_successful)
+                     else:
+                        removal_unsuccessful.Hide()
+                        wx.CallLater(3000, hide_obj, removal_unsuccessful)
+                        
+        os.replace('temp.txt', 'books.txt')
             
             
 remove_panel = wx.Panel(remove_page, wx.ID_ANY)
