@@ -94,6 +94,15 @@ def new_book(book_title, book_author, book_isbn, renter_name):
         return
     return adding
 
+def delete_book(isbn):
+    def removing(event):
+        if isbn.GetValue == "":
+            remove_successful.Show()
+            wx.CallLater(3000, hide_obj, remove_successful)
+            
+            
+            
+
 
 add_panel = wx.Panel(add_page, wx.ID_ANY)
 added_name = wx.StaticText(add_panel, wx.ID_ANY, 'Book Title:', (150, 10))
@@ -160,6 +169,10 @@ search_book.Bind(wx.EVT_BUTTON, onclick(search_page, main_page))
 remove_panel = wx.Panel(remove_page, wx.ID_ANY)
 remove_book = wx.Button(remove_panel, wx.ID_ANY, 'Return to Menu', (10, 10))
 remove_book.Bind(wx.EVT_BUTTON, onclick(remove_page, main_page))
+removal_successful = wx.StaticText(add_panel, wx.ID_ANY, 'Book removed successfully', (120, 210))
+removal_unsuccessful = wx.StaticText(add_panel, wx.ID_ANY, 'Error - ISBN not found', (120, 210))
+removal_unsuccessful.Hide()
+removal_successful.Hide()
 
 # runs program - keep as last line
 app.MainLoop()
