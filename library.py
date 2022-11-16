@@ -28,8 +28,17 @@ class Library:
 
     @staticmethod
     def remove_book(isbn):
-        # delete book from file based on ISBN
-        pass
+        if isbn != "":
+            with open("Books.txt", "a") as f:
+                file = f.readlines()
+            with open("Books.txt", "b") as f:
+                for i in file:
+                    bookinfo = i.strip("\n").lower().split(' ')
+                    if delete_value.lower() not in words:
+                        f.write(line)
+            
+            
+            
 
     @staticmethod
     def rent_book(isbn, name):
